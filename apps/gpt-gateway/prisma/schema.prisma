@@ -1,0 +1,60 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Model {
+  createdAt   DateTime  @default(now())
+  id          String    @id @default(cuid())
+  name        String    @unique
+  templates   Template? @relation(fields: [templatesId], references: [id])
+  templatesId String?   @unique
+  updatedAt   DateTime  @updatedAt
+}
+
+model MessageType {
+  createdAt  DateTime  @default(now())
+  id         String    @id @default(cuid())
+  key        String    @unique
+  template   Template? @relation(fields: [templateId], references: [id])
+  updatedAt  DateTime  @updatedAt
+  templateId String?
+}
+
+model Template {
+  createdAt    DateTime     @default(now())
+  id           String       @id @default(cuid())
+  messageTypes MessageType?
+  model        Model?
+  params       String?
+  updatedAt    DateTime     @updatedAt
+}
+
+model Message {
+  content   String
+  createdAt DateTime        @default(now())
+  id        String          @id @default(cuid())
+  role      EnumMessageRole
+  updatedAt DateTime        @updatedAt
+}
+
+enum EnumMessageRole {
+  user
+  system
+  assistant
+}
