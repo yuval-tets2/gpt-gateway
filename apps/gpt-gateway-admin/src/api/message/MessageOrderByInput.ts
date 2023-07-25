@@ -5,5 +5,6 @@ export type MessageOrderByInput = {
   createdAt?: SortOrder;
   id?: SortOrder;
   role?: SortOrder;
+  templateId?: SortOrder;
   updatedAt?: SortOrder;
 };

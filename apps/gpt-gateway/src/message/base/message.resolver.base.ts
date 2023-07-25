@@ -26,6 +26,7 @@ import { MessageCountArgs } from "./MessageCountArgs";
 import { MessageFindManyArgs } from "./MessageFindManyArgs";
 import { MessageFindUniqueArgs } from "./MessageFindUniqueArgs";
 import { Message } from "./Message";
+import { Template } from "../../template/base/Template";
 import { MessageService } from "../message.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Message)
@@ -92,7 +93,15 @@ export class MessageResolverBase {
   ): Promise<Message> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        template: args.data.template
+          ? {
+              connect: args.data.template,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -109,7 +118,15 @@ export class MessageResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          template: args.data.template
+            ? {
+                connect: args.data.template,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -140,5 +157,26 @@ export class MessageResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Template, {
+    nullable: true,
+    name: "template",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "Template",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldTemplate(
+    @graphql.Parent() parent: Message
+  ): Promise<Template | null> {
+    const result = await this.service.getTemplate(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

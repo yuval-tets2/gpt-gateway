@@ -5,7 +5,9 @@ import {
   ShowProps,
   TextField,
   DateField,
+  ReferenceField,
 } from "react-admin";
+import { TEMPLATE_TITLE_FIELD } from "../template/TemplateTitle";
 
 export const MessageShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -15,6 +17,13 @@ export const MessageShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <TextField label="Role" source="role" />
+        <ReferenceField
+          label="Template"
+          source="template.id"
+          reference="Template"
+        >
+          <TextField source={TEMPLATE_TITLE_FIELD} />
+        </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />
       </SimpleShowLayout>
     </Show>

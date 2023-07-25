@@ -8,6 +8,7 @@ import {
   ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
+import { MESSAGE_TITLE_FIELD } from "../message/MessageTitle";
 import { MESSAGETYPE_TITLE_FIELD } from "../messageType/MessageTypeTitle";
 import { MODEL_TITLE_FIELD } from "../model/ModelTitle";
 
@@ -23,6 +24,13 @@ export const TemplateList = (props: ListProps): React.ReactElement => {
       <Datagrid rowClick="show">
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
+        <ReferenceField
+          label="Messages"
+          source="message.id"
+          reference="Message"
+        >
+          <TextField source={MESSAGE_TITLE_FIELD} />
+        </ReferenceField>
         <ReferenceField
           label="Message Types"
           source="messagetype.id"

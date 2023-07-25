@@ -11,13 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { MessageTypeWhereUniqueInput } from "../../messageType/base/MessageTypeWhereUniqueInput";
+import { MessageWhereUniqueInput } from "../../message/base/MessageWhereUniqueInput";
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
+import { MessageTypeWhereUniqueInput } from "../../messageType/base/MessageTypeWhereUniqueInput";
 import { ModelWhereUniqueInput } from "../../model/base/ModelWhereUniqueInput";
 
 @InputType()
 class TemplateCreateInput {
+  @ApiProperty({
+    required: false,
+    type: () => MessageWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => MessageWhereUniqueInput)
+  @IsOptional()
+  @Field(() => MessageWhereUniqueInput, {
+    nullable: true,
+  })
+  messages?: MessageWhereUniqueInput | null;
+
   @ApiProperty({
     required: false,
     type: () => MessageTypeWhereUniqueInput,
