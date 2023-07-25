@@ -11,9 +11,16 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsDate, IsEnum } from "class-validator";
+import {
+  IsString,
+  IsDate,
+  IsEnum,
+  ValidateNested,
+  IsOptional,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { EnumMessageRole } from "./EnumMessageRole";
+import { Template } from "../../template/base/Template";
 
 @ObjectType()
 class Message {
@@ -50,6 +57,15 @@ class Message {
     nullable: true,
   })
   role?: "user" | "system" | "assistant";
+
+  @ApiProperty({
+    required: false,
+    type: () => Template,
+  })
+  @ValidateNested()
+  @Type(() => Template)
+  @IsOptional()
+  template?: Template | null;
 
   @ApiProperty({
     required: true,

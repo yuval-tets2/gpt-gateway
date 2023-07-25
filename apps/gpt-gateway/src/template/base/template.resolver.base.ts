@@ -26,6 +26,7 @@ import { TemplateCountArgs } from "./TemplateCountArgs";
 import { TemplateFindManyArgs } from "./TemplateFindManyArgs";
 import { TemplateFindUniqueArgs } from "./TemplateFindUniqueArgs";
 import { Template } from "./Template";
+import { Message } from "../../message/base/Message";
 import { MessageType } from "../../messageType/base/MessageType";
 import { Model } from "../../model/base/Model";
 import { TemplateService } from "../template.service";
@@ -97,6 +98,12 @@ export class TemplateResolverBase {
       data: {
         ...args.data,
 
+        messages: args.data.messages
+          ? {
+              connect: args.data.messages,
+            }
+          : undefined,
+
         messageTypes: args.data.messageTypes
           ? {
               connect: args.data.messageTypes,
@@ -125,6 +132,12 @@ export class TemplateResolverBase {
         ...args,
         data: {
           ...args.data,
+
+          messages: args.data.messages
+            ? {
+                connect: args.data.messages,
+              }
+            : undefined,
 
           messageTypes: args.data.messageTypes
             ? {
@@ -166,6 +179,27 @@ export class TemplateResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Message, {
+    nullable: true,
+    name: "messages",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "Message",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldMessages(
+    @graphql.Parent() parent: Template
+  ): Promise<Message | null> {
+    const result = await this.service.getMessages(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

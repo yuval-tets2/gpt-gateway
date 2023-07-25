@@ -5,7 +5,9 @@ import {
   CreateProps,
   TextInput,
   SelectInput,
+  ReferenceInput,
 } from "react-admin";
+import { TemplateTitle } from "../template/TemplateTitle";
 
 export const MessageCreate = (props: CreateProps): React.ReactElement => {
   return (
@@ -23,6 +25,13 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
+        <ReferenceInput
+          source="template.id"
+          reference="Template"
+          label="Template"
+        >
+          <SelectInput optionText={TemplateTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Create>
   );

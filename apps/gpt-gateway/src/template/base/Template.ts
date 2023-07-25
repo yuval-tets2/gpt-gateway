@@ -13,6 +13,7 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsString, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { Message } from "../../message/base/Message";
 import { MessageType } from "../../messageType/base/MessageType";
 import { Model } from "../../model/base/Model";
 
@@ -33,6 +34,15 @@ class Template {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => Message,
+  })
+  @ValidateNested()
+  @Type(() => Message)
+  @IsOptional()
+  messages?: Message | null;
 
   @ApiProperty({
     required: false,

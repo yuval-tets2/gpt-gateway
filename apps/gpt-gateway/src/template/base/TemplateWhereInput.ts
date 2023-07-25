@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
+import { MessageWhereUniqueInput } from "../../message/base/MessageWhereUniqueInput";
 import { MessageTypeWhereUniqueInput } from "../../messageType/base/MessageTypeWhereUniqueInput";
 import { ModelWhereUniqueInput } from "../../model/base/ModelWhereUniqueInput";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
@@ -30,6 +31,18 @@ class TemplateWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => MessageWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => MessageWhereUniqueInput)
+  @IsOptional()
+  @Field(() => MessageWhereUniqueInput, {
+    nullable: true,
+  })
+  messages?: MessageWhereUniqueInput;
 
   @ApiProperty({
     required: false,

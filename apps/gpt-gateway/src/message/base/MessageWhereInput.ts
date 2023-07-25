@@ -13,8 +13,9 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional, IsEnum } from "class-validator";
+import { IsOptional, IsEnum, ValidateNested } from "class-validator";
 import { EnumMessageRole } from "./EnumMessageRole";
+import { TemplateWhereUniqueInput } from "../../template/base/TemplateWhereUniqueInput";
 
 @InputType()
 class MessageWhereInput {
@@ -50,6 +51,18 @@ class MessageWhereInput {
     nullable: true,
   })
   role?: "user" | "system" | "assistant";
+
+  @ApiProperty({
+    required: false,
+    type: () => TemplateWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => TemplateWhereUniqueInput)
+  @IsOptional()
+  @Field(() => TemplateWhereUniqueInput, {
+    nullable: true,
+  })
+  template?: TemplateWhereUniqueInput;
 }
 
 export { MessageWhereInput as MessageWhereInput };
