@@ -5,7 +5,7 @@ import { Model } from "../model/Model";
 export type Template = {
   createdAt: Date;
   id: string;
-  messages?: Message | null;
+  messages?: Array<Message>;
   messageTypes?: Array<MessageType>;
   model?: Model | null;
   params: string | null;

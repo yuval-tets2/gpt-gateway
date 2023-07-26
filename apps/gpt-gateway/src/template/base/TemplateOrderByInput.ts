@@ -50,17 +50,6 @@ class TemplateOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  messagesId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   modelId?: SortOrder;
 
   @ApiProperty({

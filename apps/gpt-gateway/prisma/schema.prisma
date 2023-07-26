@@ -39,7 +39,7 @@ model MessageType {
 model Template {
   createdAt    DateTime      @default(now())
   id           String        @id @default(cuid())
-  messages     Message?
+  messages     Message[]
   messageTypes MessageType[]
   model        Model?
   params       String?
@@ -52,8 +52,8 @@ model Message {
   id         String          @id @default(cuid())
   role       EnumMessageRole
   template   Template?       @relation(fields: [templateId], references: [id])
-  updatedAt  DateTime        @updatedAt
   templateId String?
+  updatedAt  DateTime        @updatedAt
 }
 
 enum EnumMessageRole {

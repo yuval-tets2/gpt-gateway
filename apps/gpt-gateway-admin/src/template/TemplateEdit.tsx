@@ -4,10 +4,10 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceInput,
-  SelectInput,
   ReferenceArrayInput,
   SelectArrayInput,
+  ReferenceInput,
+  SelectInput,
   TextInput,
 } from "react-admin";
 
@@ -19,13 +19,14 @@ export const TemplateEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="messages.id"
+        <ReferenceArrayInput
+          source="messages"
           reference="Message"
-          label="Messages"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectInput optionText={MessageTitle} />
-        </ReferenceInput>
+          <SelectArrayInput optionText={MessageTitle} />
+        </ReferenceArrayInput>
         <ReferenceArrayInput
           source="messageTypes"
           reference="MessageType"

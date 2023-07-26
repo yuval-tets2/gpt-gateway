@@ -1,9 +1,9 @@
-import { MessageWhereUniqueInput } from "../message/MessageWhereUniqueInput";
+import { MessageCreateNestedManyWithoutTemplatesInput } from "./MessageCreateNestedManyWithoutTemplatesInput";
 import { MessageTypeCreateNestedManyWithoutTemplatesInput } from "./MessageTypeCreateNestedManyWithoutTemplatesInput";
 import { ModelWhereUniqueInput } from "../model/ModelWhereUniqueInput";
 
 export type TemplateCreateInput = {
-  messages?: MessageWhereUniqueInput | null;
+  messages?: MessageCreateNestedManyWithoutTemplatesInput;
   messageTypes?: MessageTypeCreateNestedManyWithoutTemplatesInput;
   model: ModelWhereUniqueInput | null;
   params?: string | null;

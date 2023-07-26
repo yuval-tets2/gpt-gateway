@@ -12,7 +12,6 @@ import {
 } from "react-admin";
 
 import { TEMPLATE_TITLE_FIELD } from "./TemplateTitle";
-import { MESSAGE_TITLE_FIELD } from "../message/MessageTitle";
 import { MODEL_TITLE_FIELD } from "../model/ModelTitle";
 
 export const TemplateShow = (props: ShowProps): React.ReactElement => {
@@ -21,18 +20,31 @@ export const TemplateShow = (props: ShowProps): React.ReactElement => {
       <SimpleShowLayout>
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
-        <ReferenceField
-          label="Messages"
-          source="message.id"
-          reference="Message"
-        >
-          <TextField source={MESSAGE_TITLE_FIELD} />
-        </ReferenceField>
         <ReferenceField label="Model" source="model.id" reference="Model">
           <TextField source={MODEL_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Params" source="params" />
         <DateField source="updatedAt" label="Updated At" />
+        <ReferenceManyField
+          reference="Message"
+          target="templateId"
+          label="Messages"
+        >
+          <Datagrid rowClick="show">
+            <TextField label="Content" source="content" />
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="ID" source="id" />
+            <TextField label="Role" source="role" />
+            <ReferenceField
+              label="Template"
+              source="template.id"
+              reference="Template"
+            >
+              <TextField source={TEMPLATE_TITLE_FIELD} />
+            </ReferenceField>
+            <DateField source="updatedAt" label="Updated At" />
+          </Datagrid>
+        </ReferenceManyField>
         <ReferenceManyField
           reference="MessageType"
           target="templateId"
