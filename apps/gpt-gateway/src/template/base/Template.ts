@@ -37,12 +37,12 @@ class Template {
 
   @ApiProperty({
     required: false,
-    type: () => Message,
+    type: () => [Message],
   })
   @ValidateNested()
   @Type(() => Message)
   @IsOptional()
-  messages?: Message | null;
+  messages?: Array<Message>;
 
   @ApiProperty({
     required: false,
