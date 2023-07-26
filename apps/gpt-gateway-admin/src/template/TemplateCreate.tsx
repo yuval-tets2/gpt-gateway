@@ -38,6 +38,7 @@ export const TemplateCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceInput source="model.id" reference="Model" label="Model">
           <SelectInput optionText={ModelTitle} />
         </ReferenceInput>
+        <TextInput label="Name" source="name" />
         <TextInput label="Params" source="params" />
       </SimpleForm>
     </Create>

@@ -8,6 +8,7 @@ export type Template = {
   messages?: Array<Message>;
   messageTypes?: Array<MessageType>;
   model?: Model;
+  name: string;
   params: string | null;
   updatedAt: Date;
 };

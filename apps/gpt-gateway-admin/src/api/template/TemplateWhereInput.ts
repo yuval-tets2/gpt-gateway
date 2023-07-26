@@ -9,5 +9,6 @@ export type TemplateWhereInput = {
   messages?: MessageListRelationFilter;
   messageTypes?: MessageTypeListRelationFilter;
   model?: ModelWhereUniqueInput;
+  name?: StringFilter;
   params?: StringNullableFilter;
 };

@@ -6,5 +6,6 @@ export type TemplateCreateInput = {
   messages?: MessageCreateNestedManyWithoutTemplatesInput;
   messageTypes?: MessageTypeCreateNestedManyWithoutTemplatesInput;
   model: ModelWhereUniqueInput;
+  name: string;
   params?: string | null;
 };

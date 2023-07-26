@@ -25,6 +25,7 @@ export const TemplateList = (props: ListProps): React.ReactElement => {
         <ReferenceField label="Model" source="model.id" reference="Model">
           <TextField source={MODEL_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Name" source="name" />
         <TextField label="Params" source="params" />
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>

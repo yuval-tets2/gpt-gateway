@@ -6,5 +6,6 @@ export type TemplateUpdateInput = {
   messages?: MessageUpdateManyWithoutTemplatesInput;
   messageTypes?: MessageTypeUpdateManyWithoutTemplatesInput;
   model?: ModelWhereUniqueInput;
+  name?: string;
   params?: string | null;
 };
