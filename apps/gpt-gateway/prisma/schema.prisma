@@ -42,6 +42,7 @@ model Template {
   messageTypes MessageType[]
   model        Model         @relation(fields: [modelId], references: [id])
   modelId      String
+  name         String        @unique
   params       String?
   updatedAt    DateTime      @updatedAt
 }
