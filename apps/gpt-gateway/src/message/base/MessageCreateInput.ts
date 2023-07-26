@@ -32,7 +32,7 @@ class MessageCreateInput {
   })
   @IsEnum(EnumMessageRole)
   @Field(() => EnumMessageRole)
-  role!: "user" | "system" | "assistant";
+  role!: "User" | "System" | "Assistant";
 
   @ApiProperty({
     required: false,

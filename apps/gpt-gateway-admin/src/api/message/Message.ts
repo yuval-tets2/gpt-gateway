@@ -4,7 +4,7 @@ export type Message = {
   content: string;
   createdAt: Date;
   id: string;
-  role?: "user" | "system" | "assistant";
+  role?: "User" | "System" | "Assistant";
   template?: Template | null;
   updatedAt: Date;
 };

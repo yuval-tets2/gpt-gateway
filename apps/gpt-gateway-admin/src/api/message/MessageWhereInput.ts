@@ -4,6 +4,6 @@ import { TemplateWhereUniqueInput } from "../template/TemplateWhereUniqueInput";
 export type MessageWhereInput = {
   content?: StringFilter;
   id?: StringFilter;
-  role?: "user" | "system" | "assistant";
+  role?: "User" | "System" | "Assistant";
   template?: TemplateWhereUniqueInput;
 };
