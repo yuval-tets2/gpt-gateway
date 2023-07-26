@@ -58,7 +58,7 @@ model Message {
 }
 
 enum EnumMessageRole {
-  user
-  system
-  assistant
+  User
+  System
+  Assistant
 }

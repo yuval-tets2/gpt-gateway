@@ -50,7 +50,7 @@ class MessageWhereInput {
   @Field(() => EnumMessageRole, {
     nullable: true,
   })
-  role?: "user" | "system" | "assistant";
+  role?: "User" | "System" | "Assistant";
 
   @ApiProperty({
     required: false,

@@ -13,9 +13,9 @@ import { User } from "../../user/base/User";
 import { registerEnumType } from "@nestjs/graphql";
 
 export enum EnumMessageRole {
-  User = "user",
-  System = "system",
-  Assistant = "assistant",
+  User = "User",
+  System = "System",
+  Assistant = "Assistant",
 }
 
 registerEnumType(EnumMessageRole, {

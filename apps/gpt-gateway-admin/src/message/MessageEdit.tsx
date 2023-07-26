@@ -18,9 +18,9 @@ export const MessageEdit = (props: EditProps): React.ReactElement => {
           source="role"
           label="Role"
           choices={[
-            { label: "user", value: "user" },
-            { label: "system", value: "system" },
-            { label: "assistant", value: "assistant" },
+            { label: "user", value: "User" },
+            { label: "system", value: "System" },
+            { label: "assistant", value: "Assistant" },
           ]}
           optionText="label"
           optionValue="value"
