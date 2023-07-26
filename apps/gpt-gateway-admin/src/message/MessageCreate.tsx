@@ -1,12 +1,15 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
   CreateProps,
   TextInput,
+  NumberInput,
   SelectInput,
   ReferenceInput,
 } from "react-admin";
+
 import { TemplateTitle } from "../template/TemplateTitle";
 
 export const MessageCreate = (props: CreateProps): React.ReactElement => {
@@ -14,6 +17,7 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <TextInput label="Content" multiline source="content" />
+        <NumberInput step={1} label="Position" source="position" />
         <SelectInput
           source="role"
           label="Role"

@@ -14,9 +14,10 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsDate,
+  IsInt,
+  IsOptional,
   IsEnum,
   ValidateNested,
-  IsOptional,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { EnumMessageRole } from "./EnumMessageRole";
@@ -47,6 +48,17 @@ class Message {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  position!: number | null;
 
   @ApiProperty({
     required: true,
