@@ -43,12 +43,12 @@ class Model {
 
   @ApiProperty({
     required: false,
-    type: () => Template,
+    type: () => [Template],
   })
   @ValidateNested()
   @Type(() => Template)
   @IsOptional()
-  templates?: Template | null;
+  templates?: Array<Template>;
 
   @ApiProperty({
     required: true,

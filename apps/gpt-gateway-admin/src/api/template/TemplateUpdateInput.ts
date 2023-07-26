@@ -5,6 +5,6 @@ import { ModelWhereUniqueInput } from "../model/ModelWhereUniqueInput";
 export type TemplateUpdateInput = {
   messages?: MessageUpdateManyWithoutTemplatesInput;
   messageTypes?: MessageTypeUpdateManyWithoutTemplatesInput;
-  model?: ModelWhereUniqueInput | null;
+  model?: ModelWhereUniqueInput;
   params?: string | null;
 };

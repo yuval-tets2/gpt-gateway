@@ -1,13 +1,17 @@
 import * as React from "react";
+
 import {
   Show,
   SimpleShowLayout,
   ShowProps,
   DateField,
   TextField,
+  ReferenceManyField,
+  Datagrid,
   ReferenceField,
 } from "react-admin";
-import { TEMPLATE_TITLE_FIELD } from "../template/TemplateTitle";
+
+import { MODEL_TITLE_FIELD } from "./ModelTitle";
 
 export const ModelShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -16,14 +20,22 @@ export const ModelShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <TextField label="Name" source="name" />
-        <ReferenceField
-          label="Templates"
-          source="template.id"
-          reference="Template"
-        >
-          <TextField source={TEMPLATE_TITLE_FIELD} />
-        </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />
+        <ReferenceManyField
+          reference="Template"
+          target="modelId"
+          label="Templates"
+        >
+          <Datagrid rowClick="show">
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="ID" source="id" />
+            <ReferenceField label="Model" source="model.id" reference="Model">
+              <TextField source={MODEL_TITLE_FIELD} />
+            </ReferenceField>
+            <TextField label="Params" source="params" />
+            <DateField source="updatedAt" label="Updated At" />
+          </Datagrid>
+        </ReferenceManyField>
       </SimpleShowLayout>
     </Show>
   );

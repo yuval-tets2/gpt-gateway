@@ -1,6 +1,6 @@
-import { TemplateWhereUniqueInput } from "../template/TemplateWhereUniqueInput";
+import { TemplateCreateNestedManyWithoutModelsInput } from "./TemplateCreateNestedManyWithoutModelsInput";
 
 export type ModelCreateInput = {
   name: string;
-  templates?: TemplateWhereUniqueInput | null;
+  templates?: TemplateCreateNestedManyWithoutModelsInput;
 };

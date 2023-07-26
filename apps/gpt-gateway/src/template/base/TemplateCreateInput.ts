@@ -50,7 +50,7 @@ class TemplateCreateInput {
   @ValidateNested()
   @Type(() => ModelWhereUniqueInput)
   @Field(() => ModelWhereUniqueInput)
-  model!: ModelWhereUniqueInput | null;
+  model!: ModelWhereUniqueInput;
 
   @ApiProperty({
     required: false,

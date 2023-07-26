@@ -1,6 +1,6 @@
-import { TemplateWhereUniqueInput } from "../template/TemplateWhereUniqueInput";
+import { TemplateUpdateManyWithoutModelsInput } from "./TemplateUpdateManyWithoutModelsInput";
 
 export type ModelUpdateInput = {
   name?: string;
-  templates?: TemplateWhereUniqueInput | null;
+  templates?: TemplateUpdateManyWithoutModelsInput;
 };

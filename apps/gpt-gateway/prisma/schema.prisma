@@ -19,12 +19,11 @@ model User {
 }
 
 model Model {
-  createdAt   DateTime  @default(now())
-  id          String    @id @default(cuid())
-  name        String    @unique
-  templates   Template? @relation(fields: [templatesId], references: [id])
-  templatesId String?   @unique
-  updatedAt   DateTime  @updatedAt
+  createdAt DateTime   @default(now())
+  id        String     @id @default(cuid())
+  name      String     @unique
+  templates Template[]
+  updatedAt DateTime   @updatedAt
 }
 
 model MessageType {
@@ -41,7 +40,8 @@ model Template {
   id           String        @id @default(cuid())
   messages     Message[]
   messageTypes MessageType[]
-  model        Model?
+  model        Model         @relation(fields: [modelId], references: [id])
+  modelId      String
   params       String?
   updatedAt    DateTime      @updatedAt
 }

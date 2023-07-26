@@ -12,7 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { TemplateWhereUniqueInput } from "../../template/base/TemplateWhereUniqueInput";
+import { TemplateUpdateManyWithoutModelsInput } from "./TemplateUpdateManyWithoutModelsInput";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -30,15 +30,15 @@ class ModelUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => TemplateWhereUniqueInput,
+    type: () => TemplateUpdateManyWithoutModelsInput,
   })
   @ValidateNested()
-  @Type(() => TemplateWhereUniqueInput)
+  @Type(() => TemplateUpdateManyWithoutModelsInput)
   @IsOptional()
-  @Field(() => TemplateWhereUniqueInput, {
+  @Field(() => TemplateUpdateManyWithoutModelsInput, {
     nullable: true,
   })
-  templates?: TemplateWhereUniqueInput | null;
+  templates?: TemplateUpdateManyWithoutModelsInput;
 }
 
 export { ModelUpdateInput as ModelUpdateInput };

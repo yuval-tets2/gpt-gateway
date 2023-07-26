@@ -1,12 +1,14 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
   CreateProps,
   TextInput,
-  ReferenceInput,
-  SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
+
 import { TemplateTitle } from "../template/TemplateTitle";
 
 export const ModelCreate = (props: CreateProps): React.ReactElement => {
@@ -14,13 +16,14 @@ export const ModelCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <TextInput label="Name" source="name" />
-        <ReferenceInput
-          source="templates.id"
+        <ReferenceArrayInput
+          source="templates"
           reference="Template"
-          label="Templates"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectInput optionText={TemplateTitle} />
-        </ReferenceInput>
+          <SelectArrayInput optionText={TemplateTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );

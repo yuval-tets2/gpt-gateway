@@ -53,7 +53,7 @@ class TemplateUpdateInput {
   @Field(() => ModelWhereUniqueInput, {
     nullable: true,
   })
-  model?: ModelWhereUniqueInput | null;
+  model?: ModelWhereUniqueInput;
 
   @ApiProperty({
     required: false,
