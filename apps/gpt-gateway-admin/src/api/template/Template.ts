@@ -6,7 +6,7 @@ export type Template = {
   createdAt: Date;
   id: string;
   messages?: Message | null;
-  messageTypes?: MessageType | null;
+  messageTypes?: Array<MessageType>;
   model?: Model | null;
   params: string | null;
   updatedAt: Date;

@@ -1,13 +1,13 @@
 import { StringFilter } from "../../util/StringFilter";
 import { MessageWhereUniqueInput } from "../message/MessageWhereUniqueInput";
-import { MessageTypeWhereUniqueInput } from "../messageType/MessageTypeWhereUniqueInput";
+import { MessageTypeListRelationFilter } from "../messageType/MessageTypeListRelationFilter";
 import { ModelWhereUniqueInput } from "../model/ModelWhereUniqueInput";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 export type TemplateWhereInput = {
   id?: StringFilter;
   messages?: MessageWhereUniqueInput;
-  messageTypes?: MessageTypeWhereUniqueInput;
+  messageTypes?: MessageTypeListRelationFilter;
   model?: ModelWhereUniqueInput;
   params?: StringNullableFilter;
 };

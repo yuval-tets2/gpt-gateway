@@ -1,10 +1,10 @@
 import { MessageWhereUniqueInput } from "../message/MessageWhereUniqueInput";
-import { MessageTypeWhereUniqueInput } from "../messageType/MessageTypeWhereUniqueInput";
+import { MessageTypeUpdateManyWithoutTemplatesInput } from "./MessageTypeUpdateManyWithoutTemplatesInput";
 import { ModelWhereUniqueInput } from "../model/ModelWhereUniqueInput";
 
 export type TemplateUpdateInput = {
   messages?: MessageWhereUniqueInput | null;
-  messageTypes?: MessageTypeWhereUniqueInput | null;
+  messageTypes?: MessageTypeUpdateManyWithoutTemplatesInput;
   model?: ModelWhereUniqueInput | null;
   params?: string | null;
 };

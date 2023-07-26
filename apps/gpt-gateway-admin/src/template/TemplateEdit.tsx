@@ -1,12 +1,16 @@
 import * as React from "react";
+
 import {
   Edit,
   SimpleForm,
   EditProps,
   ReferenceInput,
   SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
   TextInput,
 } from "react-admin";
+
 import { MessageTitle } from "../message/MessageTitle";
 import { MessageTypeTitle } from "../messageType/MessageTypeTitle";
 import { ModelTitle } from "../model/ModelTitle";
@@ -22,13 +26,14 @@ export const TemplateEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectInput optionText={MessageTitle} />
         </ReferenceInput>
-        <ReferenceInput
-          source="messageTypes.id"
+        <ReferenceArrayInput
+          source="messageTypes"
           reference="MessageType"
-          label="Message Types"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectInput optionText={MessageTypeTitle} />
-        </ReferenceInput>
+          <SelectArrayInput optionText={MessageTypeTitle} />
+        </ReferenceArrayInput>
         <ReferenceInput source="model.id" reference="Model" label="Model">
           <SelectInput optionText={ModelTitle} />
         </ReferenceInput>
