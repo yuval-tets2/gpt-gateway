@@ -59,7 +59,7 @@ class Template {
   })
   @ValidateNested()
   @Type(() => Model)
-  model?: Model | null;
+  model?: Model;
 
   @ApiProperty({
     required: false,

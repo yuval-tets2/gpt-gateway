@@ -12,7 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, ValidateNested, IsOptional } from "class-validator";
-import { TemplateWhereUniqueInput } from "../../template/base/TemplateWhereUniqueInput";
+import { TemplateCreateNestedManyWithoutModelsInput } from "./TemplateCreateNestedManyWithoutModelsInput";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -27,15 +27,15 @@ class ModelCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => TemplateWhereUniqueInput,
+    type: () => TemplateCreateNestedManyWithoutModelsInput,
   })
   @ValidateNested()
-  @Type(() => TemplateWhereUniqueInput)
+  @Type(() => TemplateCreateNestedManyWithoutModelsInput)
   @IsOptional()
-  @Field(() => TemplateWhereUniqueInput, {
+  @Field(() => TemplateCreateNestedManyWithoutModelsInput, {
     nullable: true,
   })
-  templates?: TemplateWhereUniqueInput | null;
+  templates?: TemplateCreateNestedManyWithoutModelsInput;
 }
 
 export { ModelCreateInput as ModelCreateInput };

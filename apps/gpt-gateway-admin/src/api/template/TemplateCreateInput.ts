@@ -5,6 +5,6 @@ import { ModelWhereUniqueInput } from "../model/ModelWhereUniqueInput";
 export type TemplateCreateInput = {
   messages?: MessageCreateNestedManyWithoutTemplatesInput;
   messageTypes?: MessageTypeCreateNestedManyWithoutTemplatesInput;
-  model: ModelWhereUniqueInput | null;
+  model: ModelWhereUniqueInput;
   params?: string | null;
 };

@@ -7,7 +7,7 @@ export type Template = {
   id: string;
   messages?: Array<Message>;
   messageTypes?: Array<MessageType>;
-  model?: Model | null;
+  model?: Model;
   params: string | null;
   updatedAt: Date;
 };

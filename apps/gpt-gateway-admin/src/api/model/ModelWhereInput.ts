@@ -1,8 +1,8 @@
 import { StringFilter } from "../../util/StringFilter";
-import { TemplateWhereUniqueInput } from "../template/TemplateWhereUniqueInput";
+import { TemplateListRelationFilter } from "../template/TemplateListRelationFilter";
 
 export type ModelWhereInput = {
   id?: StringFilter;
   name?: StringFilter;
-  templates?: TemplateWhereUniqueInput;
+  templates?: TemplateListRelationFilter;
 };

@@ -47,11 +47,14 @@ export class ModelServiceBase {
     return this.prisma.model.delete(args);
   }
 
-  async getTemplates(parentId: string): Promise<Template | null> {
+  async findTemplates(
+    parentId: string,
+    args: Prisma.TemplateFindManyArgs
+  ): Promise<Template[]> {
     return this.prisma.model
-      .findUnique({
+      .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .templates();
+      .templates(args);
   }
 }

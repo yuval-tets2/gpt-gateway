@@ -26,6 +26,7 @@ import { ModelCountArgs } from "./ModelCountArgs";
 import { ModelFindManyArgs } from "./ModelFindManyArgs";
 import { ModelFindUniqueArgs } from "./ModelFindUniqueArgs";
 import { Model } from "./Model";
+import { TemplateFindManyArgs } from "../../template/base/TemplateFindManyArgs";
 import { Template } from "../../template/base/Template";
 import { ModelService } from "../model.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -89,15 +90,7 @@ export class ModelResolverBase {
   async createModel(@graphql.Args() args: CreateModelArgs): Promise<Model> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        templates: args.data.templates
-          ? {
-              connect: args.data.templates,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -114,15 +107,7 @@ export class ModelResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          templates: args.data.templates
-            ? {
-                connect: args.data.templates,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -156,23 +141,22 @@ export class ModelResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Template, {
-    nullable: true,
-    name: "templates",
-  })
+  @graphql.ResolveField(() => [Template], { name: "templates" })
   @nestAccessControl.UseRoles({
     resource: "Template",
     action: "read",
     possession: "any",
   })
   async resolveFieldTemplates(
-    @graphql.Parent() parent: Model
-  ): Promise<Template | null> {
-    const result = await this.service.getTemplates(parent.id);
+    @graphql.Parent() parent: Model,
+    @graphql.Args() args: TemplateFindManyArgs
+  ): Promise<Template[]> {
+    const results = await this.service.findTemplates(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }
