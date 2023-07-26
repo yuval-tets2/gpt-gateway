@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, IsEnum, ValidateNested } from "class-validator";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { EnumMessageRole } from "./EnumMessageRole";
 import { TemplateWhereUniqueInput } from "../../template/base/TemplateWhereUniqueInput";
 
@@ -40,6 +41,17 @@ class MessageWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntNullableFilter,
+  })
+  @Type(() => IntNullableFilter)
+  @IsOptional()
+  @Field(() => IntNullableFilter, {
+    nullable: true,
+  })
+  position?: IntNullableFilter;
 
   @ApiProperty({
     required: false,

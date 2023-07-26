@@ -35,6 +35,7 @@ export const TemplateShow = (props: ShowProps): React.ReactElement => {
             <TextField label="Content" source="content" />
             <DateField source="createdAt" label="Created At" />
             <TextField label="ID" source="id" />
+            <TextField label="Position" source="position" />
             <TextField label="Role" source="role" />
             <ReferenceField
               label="Template"

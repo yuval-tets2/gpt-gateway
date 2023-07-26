@@ -51,6 +51,7 @@ model Message {
   content    String
   createdAt  DateTime        @default(now())
   id         String          @id @default(cuid())
+  position   Int?
   role       EnumMessageRole
   template   Template?       @relation(fields: [templateId], references: [id])
   templateId String?

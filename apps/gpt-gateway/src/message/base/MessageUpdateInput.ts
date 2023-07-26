@@ -11,7 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsEnum, ValidateNested } from "class-validator";
+import {
+  IsString,
+  IsOptional,
+  IsInt,
+  IsEnum,
+  ValidateNested,
+} from "class-validator";
 import { EnumMessageRole } from "./EnumMessageRole";
 import { TemplateWhereUniqueInput } from "../../template/base/TemplateWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -28,6 +34,17 @@ class MessageUpdateInput {
     nullable: true,
   })
   content?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  position?: number | null;
 
   @ApiProperty({
     required: false,
