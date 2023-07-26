@@ -9,7 +9,6 @@ import {
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { MESSAGE_TITLE_FIELD } from "../message/MessageTitle";
-import { MESSAGETYPE_TITLE_FIELD } from "../messageType/MessageTypeTitle";
 import { MODEL_TITLE_FIELD } from "../model/ModelTitle";
 
 export const TemplateList = (props: ListProps): React.ReactElement => {
@@ -30,13 +29,6 @@ export const TemplateList = (props: ListProps): React.ReactElement => {
           reference="Message"
         >
           <TextField source={MESSAGE_TITLE_FIELD} />
-        </ReferenceField>
-        <ReferenceField
-          label="Message Types"
-          source="messagetype.id"
-          reference="MessageType"
-        >
-          <TextField source={MESSAGETYPE_TITLE_FIELD} />
         </ReferenceField>
         <ReferenceField label="Model" source="model.id" reference="Model">
           <TextField source={MODEL_TITLE_FIELD} />

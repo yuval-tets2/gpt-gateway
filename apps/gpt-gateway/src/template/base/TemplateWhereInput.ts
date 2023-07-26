@@ -15,7 +15,7 @@ import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { MessageWhereUniqueInput } from "../../message/base/MessageWhereUniqueInput";
-import { MessageTypeWhereUniqueInput } from "../../messageType/base/MessageTypeWhereUniqueInput";
+import { MessageTypeListRelationFilter } from "../../messageType/base/MessageTypeListRelationFilter";
 import { ModelWhereUniqueInput } from "../../model/base/ModelWhereUniqueInput";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 
@@ -46,15 +46,15 @@ class TemplateWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => MessageTypeWhereUniqueInput,
+    type: () => MessageTypeListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => MessageTypeWhereUniqueInput)
+  @Type(() => MessageTypeListRelationFilter)
   @IsOptional()
-  @Field(() => MessageTypeWhereUniqueInput, {
+  @Field(() => MessageTypeListRelationFilter, {
     nullable: true,
   })
-  messageTypes?: MessageTypeWhereUniqueInput;
+  messageTypes?: MessageTypeListRelationFilter;
 
   @ApiProperty({
     required: false,
