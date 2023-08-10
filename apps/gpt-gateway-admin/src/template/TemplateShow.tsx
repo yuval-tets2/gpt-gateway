@@ -32,10 +32,9 @@ export const TemplateShow = (props: ShowProps): React.ReactElement => {
           label="Messages"
         >
           <Datagrid rowClick="show">
-            <TextField label="Content" source="content" />
-            <DateField source="createdAt" label="Created At" />
             <TextField label="ID" source="id" />
             <TextField label="Position" source="position" />
+            <TextField label="Content" source="content" />
             <TextField label="Role" source="role" />
             <ReferenceField
               label="Template"
@@ -45,6 +44,7 @@ export const TemplateShow = (props: ShowProps): React.ReactElement => {
               <TextField source={TEMPLATE_TITLE_FIELD} />
             </ReferenceField>
             <DateField source="updatedAt" label="Updated At" />
+            <DateField source="createdAt" label="Created At" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField

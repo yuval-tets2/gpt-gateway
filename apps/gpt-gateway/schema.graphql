@@ -1,0 +1,397 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum EnumMessageRole {
+  Assistant
+  System
+  User
+}
+
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+type Message {
+  content: String!
+  createdAt: DateTime!
+  id: String!
+  position: Float
+  role: EnumMessageRole
+  template: Template
+  updatedAt: DateTime!
+}
+
+input MessageCreateInput {
+  content: String!
+  position: Float
+  role: EnumMessageRole!
+  template: TemplateWhereUniqueInput
+}
+
+input MessageCreateNestedManyWithoutTemplatesInput {
+  connect: [MessageWhereUniqueInput!]
+}
+
+input MessageListRelationFilter {
+  every: MessageWhereInput
+  none: MessageWhereInput
+  some: MessageWhereInput
+}
+
+input MessageOrderByInput {
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  position: SortOrder
+  role: SortOrder
+  templateId: SortOrder
+  updatedAt: SortOrder
+}
+
+input MessageParam {
+  name: String!
+  value: String!
+}
+
+type MessageType {
+  createdAt: DateTime!
+  id: String!
+  key: String!
+  template: Template
+  updatedAt: DateTime!
+}
+
+input MessageTypeCreateInput {
+  key: String!
+  template: TemplateWhereUniqueInput
+}
+
+input MessageTypeCreateNestedManyWithoutTemplatesInput {
+  connect: [MessageTypeWhereUniqueInput!]
+}
+
+input MessageTypeListRelationFilter {
+  every: MessageTypeWhereInput
+  none: MessageTypeWhereInput
+  some: MessageTypeWhereInput
+}
+
+input MessageTypeOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  key: SortOrder
+  templateId: SortOrder
+  updatedAt: SortOrder
+}
+
+input MessageTypeUpdateInput {
+  key: String
+  template: TemplateWhereUniqueInput
+}
+
+input MessageTypeUpdateManyWithoutTemplatesInput {
+  connect: [MessageTypeWhereUniqueInput!]
+  disconnect: [MessageTypeWhereUniqueInput!]
+  set: [MessageTypeWhereUniqueInput!]
+}
+
+input MessageTypeWhereInput {
+  id: StringFilter
+  key: StringFilter
+  template: TemplateWhereUniqueInput
+}
+
+input MessageTypeWhereUniqueInput {
+  id: String!
+}
+
+input MessageUpdateInput {
+  content: String
+  position: Float
+  role: EnumMessageRole
+  template: TemplateWhereUniqueInput
+}
+
+input MessageUpdateManyWithoutTemplatesInput {
+  connect: [MessageWhereUniqueInput!]
+  disconnect: [MessageWhereUniqueInput!]
+  set: [MessageWhereUniqueInput!]
+}
+
+input MessageWhereInput {
+  content: StringFilter
+  id: StringFilter
+  position: IntNullableFilter
+  role: EnumMessageRole
+  template: TemplateWhereUniqueInput
+}
+
+input MessageWhereUniqueInput {
+  id: String!
+}
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Model {
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  templates(orderBy: [TemplateOrderByInput!], skip: Float, take: Float, where: TemplateWhereInput): [Template!]!
+  updatedAt: DateTime!
+}
+
+input ModelCreateInput {
+  name: String!
+  templates: TemplateCreateNestedManyWithoutModelsInput
+}
+
+input ModelOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input ModelUpdateInput {
+  name: String
+  templates: TemplateUpdateManyWithoutModelsInput
+}
+
+input ModelWhereInput {
+  id: StringFilter
+  name: StringFilter
+  templates: TemplateListRelationFilter
+}
+
+input ModelWhereUniqueInput {
+  id: String!
+}
+
+type Mutation {
+  createMessage(data: MessageCreateInput!): Message!
+  createMessageType(data: MessageTypeCreateInput!): MessageType!
+  createModel(data: ModelCreateInput!): Model!
+  createTemplate(data: TemplateCreateInput!): Template!
+  createUser(data: UserCreateInput!): User!
+  deleteMessage(where: MessageWhereUniqueInput!): Message!
+  deleteMessageType(where: MessageTypeWhereUniqueInput!): MessageType!
+  deleteModel(where: ModelWhereUniqueInput!): Model!
+  deleteTemplate(where: TemplateWhereUniqueInput!): Template!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateMessage(data: MessageUpdateInput!, where: MessageWhereUniqueInput!): Message!
+  updateMessageType(data: MessageTypeUpdateInput!, where: MessageTypeWhereUniqueInput!): MessageType!
+  updateModel(data: ModelUpdateInput!, where: ModelWhereUniqueInput!): Model!
+  updateTemplate(data: TemplateUpdateInput!, where: TemplateWhereUniqueInput!): Template!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Query {
+  _messageTypesMeta(where: MessageTypeWhereInput): MetaQueryPayload!
+  _messagesMeta(where: MessageWhereInput): MetaQueryPayload!
+  _modelsMeta(where: ModelWhereInput): MetaQueryPayload!
+  _templatesMeta(where: TemplateWhereInput): MetaQueryPayload!
+  _usersMeta(where: UserWhereInput): MetaQueryPayload!
+  message(where: MessageWhereUniqueInput!): Message
+  messageType(where: MessageTypeWhereUniqueInput!): MessageType
+  messageTypes(orderBy: [MessageTypeOrderByInput!], skip: Float, take: Float, where: MessageTypeWhereInput): [MessageType!]!
+  messages(orderBy: [MessageOrderByInput!], skip: Float, take: Float, where: MessageWhereInput): [Message!]!
+  model(where: ModelWhereUniqueInput!): Model
+  models(orderBy: [ModelOrderByInput!], skip: Float, take: Float, where: ModelWhereInput): [Model!]!
+  template(where: TemplateWhereUniqueInput!): Template
+  templates(orderBy: [TemplateOrderByInput!], skip: Float, take: Float, where: TemplateWhereInput): [Template!]!
+  testTemplate(data: TemplateTestInput!): String
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type Template {
+  createdAt: DateTime!
+  id: String!
+  messageTypes(orderBy: [MessageTypeOrderByInput!], skip: Float, take: Float, where: MessageTypeWhereInput): [MessageType!]!
+  messages(orderBy: [MessageOrderByInput!], skip: Float, take: Float, where: MessageWhereInput): [Message!]!
+  model: Model
+  name: String!
+  params: String
+  updatedAt: DateTime!
+}
+
+input TemplateCreateInput {
+  messageTypes: MessageTypeCreateNestedManyWithoutTemplatesInput
+  messages: MessageCreateNestedManyWithoutTemplatesInput
+  model: ModelWhereUniqueInput!
+  name: String!
+  params: String
+}
+
+input TemplateCreateNestedManyWithoutModelsInput {
+  connect: [TemplateWhereUniqueInput!]
+}
+
+input TemplateListRelationFilter {
+  every: TemplateWhereInput
+  none: TemplateWhereInput
+  some: TemplateWhereInput
+}
+
+input TemplateOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  modelId: SortOrder
+  name: SortOrder
+  params: SortOrder
+  updatedAt: SortOrder
+}
+
+input TemplateTestInput {
+  params: [MessageParam!]!
+  templateId: String
+}
+
+input TemplateUpdateInput {
+  messageTypes: MessageTypeUpdateManyWithoutTemplatesInput
+  messages: MessageUpdateManyWithoutTemplatesInput
+  model: ModelWhereUniqueInput
+  name: String
+  params: String
+}
+
+input TemplateUpdateManyWithoutModelsInput {
+  connect: [TemplateWhereUniqueInput!]
+  disconnect: [TemplateWhereUniqueInput!]
+  set: [TemplateWhereUniqueInput!]
+}
+
+input TemplateWhereInput {
+  id: StringFilter
+  messageTypes: MessageTypeListRelationFilter
+  messages: MessageListRelationFilter
+  model: ModelWhereUniqueInput
+  name: StringFilter
+  params: StringNullableFilter
+}
+
+input TemplateWhereUniqueInput {
+  id: String!
+}
+
+type User {
+  createdAt: DateTime!
+  firstName: String
+  id: String!
+  lastName: String
+  roles: JSON!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  firstName: String
+  lastName: String
+  password: String!
+  roles: JSON!
+  username: String!
+}
+
+type UserInfo {
+  accessToken: String
+  id: String!
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  password: String
+  roles: JSON
+  username: String
+}
+
+input UserWhereInput {
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}
